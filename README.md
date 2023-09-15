@@ -4,6 +4,14 @@
 
 Tested only in Linux!
 
+```shell
+git clone --recursive git@github.com:gpsnts/template_opengl.git
+```
+Or
+```shell
+git clone --recursive https://github.com/gpsnts/template_opengl.git
+```
+
 ## **Used tools**
 
 * GCC (10.2.0)
