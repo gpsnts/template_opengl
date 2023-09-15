@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Hard-coded 'cause time reasons
+if [ $(ls libs/glfw | wc -l) -eq "0" -a $(ls libs/glm | wc -l) -eq "0" -a $(ls libs/stb | wc -l) -eq "0" ]
+then
+	printf "\n\nAdding submodules \n\n"
+	git submodule init;
+	git submodule update;
+fi
+
+DEBUG_MODE="$1"
+
+if [[ -z "$DEBUG_MODE" ]]; then
+	printf "SET DEFAULT VALUE: DEBUG_MODE\n\n"
+	DEBUG_MODE=OFF
+fi
+
+if [[ "$DEBUG_MODE" != "OFF" && "$DEBUG_MODE" != "ON" ]]; then
+	printf "INVALID ARGUMENT. SETTING DEFAULT VALUE\n\n"
+	DEBUG_MODE=OFF
+fi
+
+rm -rf build 2> /dev/null;
+cmake -B build -G "Ninja" -DDEBUG_MODE=$DEBUG_MODE; 
+ninja -C build;
+cd build;
+./app $APP_ARGS;
