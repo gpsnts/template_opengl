@@ -1,6 +1,5 @@
 .vscode/
 build/
-libs/*
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
